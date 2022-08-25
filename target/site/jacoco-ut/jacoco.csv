@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 QueueProcessorRecycle,hn.com.tigo.queue.listener,NewRelicImpl,16,9,0,0,10,6,2,2,2,2
 QueueProcessorRecycle,hn.com.tigo.queue.listener,ProcessQueueRecycleDaemonThread,102,0,2,0,21,0,5,0,4,0
-QueueProcessorRecycle,hn.com.tigo.queue.listener,ProcessQueueRecycleMasterThread,151,496,22,28,22,122,17,20,1,11
+QueueProcessorRecycle,hn.com.tigo.queue.listener,ProcessQueueRecycleMasterThread,151,485,20,26,22,121,15,20,1,11
 QueueProcessorRecycle,hn.com.tigo.queue.listener.entity,OcepManager,23,0,0,0,8,0,2,0,2,0
 QueueProcessorRecycle,hn.com.tigo.queue.listener.entity,ParametersEntity,88,0,4,0,21,0,5,0,3,0
 QueueProcessorRecycle,hn.com.tigo.queue.context,AppCommand,68,0,4,0,13,0,8,0,6,0

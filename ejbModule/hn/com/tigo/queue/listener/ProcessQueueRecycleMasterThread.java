@@ -147,11 +147,9 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 																									// NewRelic como
 																									// metrica.
 				startTime = 0;
-				if (connqueue != null) {
-					if (state != States.STARTED) {
+				if (connqueue != null && state != States.STARTED) {
 						connqueue.disconnectService();
 						connqueue = null;
-					}
 				}
 			}
 			state = States.SHUTTINGDOWN; //linea habilitarla solo para junit test
@@ -209,17 +207,15 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 		Calendar cycleCalendar = Calendar.getInstance();
 		final SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
 
-		switch (evenType) {
-		case "RECICLAJE":
+		if (evenType.equals("RECICLAJE")) {
+		
 			String[] subscriber = trama[2].split(params.get("SUBSCRIBER_SPLIT"));
 			NotifyMessageDTO object = generatedRequest(trama, detailEvent, notifyMessageDTO, evenType, uuid,
 					(subscriber.length > 1 ? subscriber[1] : ""), df.format(cycleCalendar.getTime()));
 			Gson gson = new Gson();
-			return gson.toJson(object);
-			
-		default:
-			return request;
+			return gson.toJson(object);			
 		}
+		return request;
 	}
 
 	/**

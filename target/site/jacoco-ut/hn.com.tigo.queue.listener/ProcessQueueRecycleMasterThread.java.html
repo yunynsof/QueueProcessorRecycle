@@ -147,17 +147,15 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 																									// NewRelic como
 																									// metrica.
 <span class="pc" id="L149">				startTime = 0;</span>
-<span class="pc bpc" id="L150" title="5 of 6 branches missed.">				if (connqueue != null) {</span>
-<span class="pc bpc" id="L151" title="5 of 6 branches missed.">					if (state != States.STARTED) {</span>
-<span class="nc" id="L152">						connqueue.disconnectService();</span>
-<span class="nc" id="L153">						connqueue = null;</span>
-					}
+<span class="pc bpc" id="L150" title="10 of 12 branches missed.">				if (connqueue != null &amp;&amp; state != States.STARTED) {</span>
+<span class="nc" id="L151">						connqueue.disconnectService();</span>
+<span class="nc" id="L152">						connqueue = null;</span>
 				}
-<span class="pc" id="L156">			}</span>
-<span class="fc" id="L157">			state = States.SHUTTINGDOWN; //linea habilitarla solo para junit test</span>
-<span class="fc" id="L158">		}</span>
-<span class="fc" id="L159">		executorService.shutdown();</span>
-<span class="fc" id="L160">	}</span>
+<span class="pc" id="L154">			}</span>
+<span class="fc" id="L155">			state = States.SHUTTINGDOWN; //linea habilitarla solo para junit test</span>
+<span class="fc" id="L156">		}</span>
+<span class="fc" id="L157">		executorService.shutdown();</span>
+<span class="fc" id="L158">	}</span>
 
 	
 	/**
@@ -170,27 +168,27 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public long processTrama(ReadFilesConfig readConfig, long startTime, String tramaComplete) throws IOException  {
-<span class="pc bpc" id="L173" title="1 of 2 branches missed.">		if (tramaComplete != null) {</span>
-<span class="fc" id="L174">			startTime = System.nanoTime();</span>
-<span class="fc" id="L175">			String[] trama = tramaComplete.split(&quot;\\|&quot;);</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">		if (tramaComplete != null) {</span>
+<span class="fc" id="L172">			startTime = System.nanoTime();</span>
+<span class="fc" id="L173">			String[] trama = tramaComplete.split(&quot;\\|&quot;);</span>
 
-<span class="fc" id="L177">			final ConfigEventDTO configEvent = readConfig.readConfigEvent();</span>
-<span class="fc" id="L178">			DetailEventDTO detailEvent = readConfig.getDetailEvent(configEvent, trama[0]);</span>
+<span class="fc" id="L175">			final ConfigEventDTO configEvent = readConfig.readConfigEvent();</span>
+<span class="fc" id="L176">			DetailEventDTO detailEvent = readConfig.getDetailEvent(configEvent, trama[0]);</span>
 
-<span class="fc bfc" id="L180" title="All 2 branches covered.">			if (detailEvent != null) {</span>
-<span class="fc" id="L181">				LOGGER.info(&quot;Trama: &quot; + tramaComplete + &quot; Evento: &quot; + detailEvent.getName() + &quot; ProductId: &quot;</span>
-<span class="fc" id="L182">						+ detailEvent.getDefaultProduct());</span>
-<span class="fc" id="L183">				String request = obtainRequest(trama, detailEvent);</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">			if (detailEvent != null) {</span>
+<span class="fc" id="L179">				LOGGER.info(&quot;Trama: &quot; + tramaComplete + &quot; Evento: &quot; + detailEvent.getName() + &quot; ProductId: &quot;</span>
+<span class="fc" id="L180">						+ detailEvent.getDefaultProduct());</span>
+<span class="fc" id="L181">				String request = obtainRequest(trama, detailEvent);</span>
 
-<span class="pc bpc" id="L185" title="1 of 2 branches missed.">				if (request != null) {</span>
-<span class="fc" id="L186">					methodPost(request);</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">				if (request != null) {</span>
+<span class="fc" id="L184">					methodPost(request);</span>
 				}
 
-<span class="fc" id="L189">			} else {</span>
-<span class="fc" id="L190">				LOGGER.info(&quot;Trama no aceptada, por no tener evento valido: &quot; + tramaComplete);</span>
+<span class="fc" id="L187">			} else {</span>
+<span class="fc" id="L188">				LOGGER.info(&quot;Trama no aceptada, por no tener evento valido: &quot; + tramaComplete);</span>
 			}
 		}
-<span class="fc" id="L193">		return startTime;</span>
+<span class="fc" id="L191">		return startTime;</span>
 	}
 	
 	/**
@@ -201,25 +199,23 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 * @return the string
 	 */
 	private String obtainRequest(String[] trama, DetailEventDTO detailEvent) {
-<span class="fc" id="L204">		String request = null;</span>
+<span class="fc" id="L202">		String request = null;</span>
 
-<span class="fc" id="L206">		NotifyMessageDTO notifyMessageDTO = new NotifyMessageDTO();</span>
-<span class="fc" id="L207">		String evenType = trama[0];</span>
-<span class="fc" id="L208">		String uuid = UUID.randomUUID().toString();</span>
-<span class="fc" id="L209">		Calendar cycleCalendar = Calendar.getInstance();</span>
-<span class="fc" id="L210">		final SimpleDateFormat df = new SimpleDateFormat(&quot;yyyyMMdd&quot;);</span>
+<span class="fc" id="L204">		NotifyMessageDTO notifyMessageDTO = new NotifyMessageDTO();</span>
+<span class="fc" id="L205">		String evenType = trama[0];</span>
+<span class="fc" id="L206">		String uuid = UUID.randomUUID().toString();</span>
+<span class="fc" id="L207">		Calendar cycleCalendar = Calendar.getInstance();</span>
+<span class="fc" id="L208">		final SimpleDateFormat df = new SimpleDateFormat(&quot;yyyyMMdd&quot;);</span>
 
-<span class="pc bpc" id="L212" title="3 of 6 branches missed.">		switch (evenType) {</span>
-		case &quot;RECICLAJE&quot;:
-<span class="fc" id="L214">			String[] subscriber = trama[2].split(params.get(&quot;SUBSCRIBER_SPLIT&quot;));</span>
-<span class="fc bfc" id="L215" title="All 2 branches covered.">			NotifyMessageDTO object = generatedRequest(trama, detailEvent, notifyMessageDTO, evenType, uuid,</span>
-<span class="fc" id="L216">					(subscriber.length &gt; 1 ? subscriber[1] : &quot;&quot;), df.format(cycleCalendar.getTime()));</span>
-<span class="fc" id="L217">			Gson gson = new Gson();</span>
-<span class="fc" id="L218">			return gson.toJson(object);</span>
-			
-		default:
-<span class="nc" id="L221">			return request;</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">		if (evenType.equals(&quot;RECICLAJE&quot;)) {</span>
+		
+<span class="fc" id="L212">			String[] subscriber = trama[2].split(params.get(&quot;SUBSCRIBER_SPLIT&quot;));</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">			NotifyMessageDTO object = generatedRequest(trama, detailEvent, notifyMessageDTO, evenType, uuid,</span>
+<span class="fc" id="L214">					(subscriber.length &gt; 1 ? subscriber[1] : &quot;&quot;), df.format(cycleCalendar.getTime()));</span>
+<span class="fc" id="L215">			Gson gson = new Gson();</span>
+<span class="fc" id="L216">			return gson.toJson(object);			</span>
 		}
+<span class="nc" id="L218">		return request;</span>
 	}
 
 	/**
@@ -236,15 +232,15 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 */
 	private NotifyMessageDTO generatedRequest(String[] trama, DetailEventDTO detailEvent,
 			NotifyMessageDTO notifyMessageDTO, String evenType, String uuid, String subscriber, String fecha) {
-<span class="fc" id="L239">		notifyMessageDTO.setEventType(evenType);</span>
-<span class="fc" id="L240">		notifyMessageDTO.setChannelId(String.valueOf(detailEvent.getChannelId()));</span>
-<span class="fc" id="L241">		notifyMessageDTO.setOrderType(detailEvent.getDefaultOrder());</span>
-<span class="fc" id="L242">		notifyMessageDTO.setProductId(Integer.valueOf(detailEvent.getDefaultProduct()));</span>
-<span class="fc" id="L243">		notifyMessageDTO.setSubscriberId(subscriber);</span>
-<span class="fc" id="L244">		notifyMessageDTO.setDate(fecha);</span>
-<span class="fc" id="L245">		notifyMessageDTO.setTransactionId(uuid);</span>
-<span class="fc" id="L246">		notifyMessageDTO.setAdditionalsParams(getAdditionalParams(trama));</span>
-<span class="fc" id="L247">		return notifyMessageDTO;</span>
+<span class="fc" id="L235">		notifyMessageDTO.setEventType(evenType);</span>
+<span class="fc" id="L236">		notifyMessageDTO.setChannelId(String.valueOf(detailEvent.getChannelId()));</span>
+<span class="fc" id="L237">		notifyMessageDTO.setOrderType(detailEvent.getDefaultOrder());</span>
+<span class="fc" id="L238">		notifyMessageDTO.setProductId(Integer.valueOf(detailEvent.getDefaultProduct()));</span>
+<span class="fc" id="L239">		notifyMessageDTO.setSubscriberId(subscriber);</span>
+<span class="fc" id="L240">		notifyMessageDTO.setDate(fecha);</span>
+<span class="fc" id="L241">		notifyMessageDTO.setTransactionId(uuid);</span>
+<span class="fc" id="L242">		notifyMessageDTO.setAdditionalsParams(getAdditionalParams(trama));</span>
+<span class="fc" id="L243">		return notifyMessageDTO;</span>
 	}
 
 	/**
@@ -255,37 +251,37 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 */
 	private List&lt;AttributeValuePair&gt; getAdditionalParams(String[] trama) {
 
-<span class="fc" id="L258">		List&lt;AttributeValuePair&gt; list = new ArrayList&lt;AttributeValuePair&gt;();</span>
+<span class="fc" id="L254">		List&lt;AttributeValuePair&gt; list = new ArrayList&lt;AttributeValuePair&gt;();</span>
 
-<span class="fc bfc" id="L260" title="All 2 branches covered.">		for (int i = 0; i &lt; trama.length; i++) {</span>
-<span class="fc" id="L261">			AttributeValuePair attributeValuePair = new AttributeValuePair();</span>
-<span class="fc bfc" id="L262" title="All 2 branches covered.">			if (i == 0) {</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">		for (int i = 0; i &lt; trama.length; i++) {</span>
+<span class="fc" id="L257">			AttributeValuePair attributeValuePair = new AttributeValuePair();</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">			if (i == 0) {</span>
 
-<span class="fc" id="L264">				attributeValuePair.setAttribute(&quot;EVENT&quot;);</span>
-<span class="fc" id="L265">				attributeValuePair.setValue(trama[0]);</span>
-<span class="fc" id="L266">				list.add(attributeValuePair);</span>
-<span class="fc bfc" id="L267" title="All 2 branches covered.">			} else if (i == 1) {</span>
+<span class="fc" id="L260">				attributeValuePair.setAttribute(&quot;EVENT&quot;);</span>
+<span class="fc" id="L261">				attributeValuePair.setValue(trama[0]);</span>
+<span class="fc" id="L262">				list.add(attributeValuePair);</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">			} else if (i == 1) {</span>
 
-<span class="fc" id="L269">				attributeValuePair.setAttribute(&quot;SUBEVENT&quot;);</span>
-<span class="fc" id="L270">				attributeValuePair.setValue(trama[1]);</span>
-<span class="fc" id="L271">				list.add(attributeValuePair);</span>
+<span class="fc" id="L265">				attributeValuePair.setAttribute(&quot;SUBEVENT&quot;);</span>
+<span class="fc" id="L266">				attributeValuePair.setValue(trama[1]);</span>
+<span class="fc" id="L267">				list.add(attributeValuePair);</span>
 			} else {
 
-<span class="fc" id="L274">				String tramaF = trama[i];</span>
-<span class="fc bfc" id="L275" title="All 2 branches covered.">				if ((i + 1) == trama.length) {</span>
-<span class="fc" id="L276">					tramaF = tramaF.replaceAll(&quot; &quot;, &quot;&quot;);</span>
-<span class="fc" id="L277">					tramaF = tramaF.replaceAll(&quot;\u0000&quot;, &quot;&quot;);</span>
-<span class="fc" id="L278">					tramaF = tramaF.replaceAll(&quot;\u000f&quot;, &quot;&quot;);</span>
+<span class="fc" id="L270">				String tramaF = trama[i];</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">				if ((i + 1) == trama.length) {</span>
+<span class="fc" id="L272">					tramaF = tramaF.replaceAll(&quot; &quot;, &quot;&quot;);</span>
+<span class="fc" id="L273">					tramaF = tramaF.replaceAll(&quot;\u0000&quot;, &quot;&quot;);</span>
+<span class="fc" id="L274">					tramaF = tramaF.replaceAll(&quot;\u000f&quot;, &quot;&quot;);</span>
 				}
-<span class="fc" id="L280">				String[] attribute = tramaF.split(params.get(&quot;SUBSCRIBER_SPLIT&quot;));</span>
-<span class="pc bpc" id="L281" title="1 of 2 branches missed.">				if (!attribute[0].equals(&quot;&quot;)) {</span>
-<span class="fc" id="L282">					attributeValuePair.setAttribute(attribute[0]);</span>
-<span class="fc bfc" id="L283" title="All 2 branches covered.">					attributeValuePair.setValue(attribute.length &gt; 1 ? attribute[1] : &quot;&quot;);</span>
-<span class="fc" id="L284">					list.add(attributeValuePair);</span>
+<span class="fc" id="L276">				String[] attribute = tramaF.split(params.get(&quot;SUBSCRIBER_SPLIT&quot;));</span>
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">				if (!attribute[0].equals(&quot;&quot;)) {</span>
+<span class="fc" id="L278">					attributeValuePair.setAttribute(attribute[0]);</span>
+<span class="fc bfc" id="L279" title="All 2 branches covered.">					attributeValuePair.setValue(attribute.length &gt; 1 ? attribute[1] : &quot;&quot;);</span>
+<span class="fc" id="L280">					list.add(attributeValuePair);</span>
 				}
 			}
 		}
-<span class="fc" id="L288">		return list;</span>
+<span class="fc" id="L284">		return list;</span>
 	}
 
 	/**
@@ -295,39 +291,39 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 * @return the string
 	 */
 	private String methodPost(String request) {
-<span class="fc" id="L298">		StringBuilder content = null;</span>
+<span class="fc" id="L294">		StringBuilder content = null;</span>
 		try {
 
-<span class="fc" id="L301">			String urlFinal = params.get(&quot;URL_NOTIFY_EVENT&quot;);</span>
-<span class="fc" id="L302">			LOGGER.info(urlFinal);</span>
+<span class="fc" id="L297">			String urlFinal = params.get(&quot;URL_NOTIFY_EVENT&quot;);</span>
+<span class="fc" id="L298">			LOGGER.info(urlFinal);</span>
 
-<span class="fc" id="L304">			URL url = new URL(urlFinal);</span>
-<span class="fc" id="L305">			HttpURLConnection con = (HttpURLConnection) url.openConnection();</span>
-<span class="fc" id="L306">			con.setDoOutput(true);</span>
-<span class="fc" id="L307">			con.setRequestMethod(&quot;POST&quot;);</span>
-<span class="fc" id="L308">			con.setConnectTimeout(5000);</span>
-<span class="fc" id="L309">			con.setReadTimeout(5000);</span>
-<span class="fc" id="L310">			con.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L300">			URL url = new URL(urlFinal);</span>
+<span class="fc" id="L301">			HttpURLConnection con = (HttpURLConnection) url.openConnection();</span>
+<span class="fc" id="L302">			con.setDoOutput(true);</span>
+<span class="fc" id="L303">			con.setRequestMethod(&quot;POST&quot;);</span>
+<span class="fc" id="L304">			con.setConnectTimeout(5000);</span>
+<span class="fc" id="L305">			con.setReadTimeout(5000);</span>
+<span class="fc" id="L306">			con.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
 
-<span class="fc" id="L312">			byte[] outputInBytes = request.getBytes(&quot;UTF-8&quot;);</span>
-<span class="fc" id="L313">			OutputStream os = con.getOutputStream();</span>
-<span class="fc" id="L314">			os.write(outputInBytes);</span>
-<span class="fc" id="L315">			os.flush();</span>
+<span class="fc" id="L308">			byte[] outputInBytes = request.getBytes(&quot;UTF-8&quot;);</span>
+<span class="fc" id="L309">			OutputStream os = con.getOutputStream();</span>
+<span class="fc" id="L310">			os.write(outputInBytes);</span>
+<span class="fc" id="L311">			os.flush();</span>
 
-<span class="fc" id="L317">			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));</span>
+<span class="fc" id="L313">			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));</span>
 			String inputLine;
-<span class="fc" id="L319">			content = new StringBuilder();</span>
-<span class="fc bfc" id="L320" title="All 2 branches covered.">			while ((inputLine = in.readLine()) != null) {</span>
-<span class="fc" id="L321">				content.append(inputLine);</span>
+<span class="fc" id="L315">			content = new StringBuilder();</span>
+<span class="fc bfc" id="L316" title="All 2 branches covered.">			while ((inputLine = in.readLine()) != null) {</span>
+<span class="fc" id="L317">				content.append(inputLine);</span>
 			}
-<span class="fc" id="L323">			in.close();</span>
-<span class="fc" id="L324">			con.disconnect();</span>
-<span class="fc" id="L325">			LOGGER.info(content.toString());</span>
-<span class="nc" id="L326">		} catch (Exception e) {</span>
-<span class="nc" id="L327">			LOGGER.error(&quot;ERROR: en api Notifyevent: &quot; + e.getMessage());</span>
-<span class="nc" id="L328">			return &quot;&quot;;</span>
-<span class="fc" id="L329">		}</span>
-<span class="fc" id="L330">		return content.toString();</span>
+<span class="fc" id="L319">			in.close();</span>
+<span class="fc" id="L320">			con.disconnect();</span>
+<span class="fc" id="L321">			LOGGER.info(content.toString());</span>
+<span class="nc" id="L322">		} catch (Exception e) {</span>
+<span class="nc" id="L323">			LOGGER.error(&quot;ERROR: en api Notifyevent: &quot; + e.getMessage());</span>
+<span class="nc" id="L324">			return &quot;&quot;;</span>
+<span class="fc" id="L325">		}</span>
+<span class="fc" id="L326">		return content.toString();</span>
 	}
 	
 	/**
@@ -337,24 +333,24 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 */
 	@SuppressWarnings(&quot;unchecked&quot;)
 	private void getConnection() {
-<span class="fc" id="L340">		OcepManager manager = null;</span>
+<span class="fc" id="L336">		OcepManager manager = null;</span>
 		try {
-<span class="nc" id="L342">			ServiceSessionEJBLocal&lt;OcepManager&gt; serviceSession = ServiceSessionEJB.getInstance();</span>
-<span class="nc" id="L343">			manager = serviceSession.getSessionDataSource(OcepManager.class,</span>
+<span class="nc" id="L338">			ServiceSessionEJBLocal&lt;OcepManager&gt; serviceSession = ServiceSessionEJB.getInstance();</span>
+<span class="nc" id="L339">			manager = serviceSession.getSessionDataSource(OcepManager.class,</span>
 					QueueConstantListener.DATASOURCE_CPE);
-<span class="nc" id="L345">			params = manager.listAllParam();</span>
-<span class="fc" id="L346">		} catch (PersistenceException e) {</span>
-<span class="fc" id="L347">			LOGGER.error(QueueConstantListener.ERROR_CONNECTION + e.getMessage(), e);</span>
+<span class="nc" id="L341">			params = manager.listAllParam();</span>
+<span class="fc" id="L342">		} catch (PersistenceException e) {</span>
+<span class="fc" id="L343">			LOGGER.error(QueueConstantListener.ERROR_CONNECTION + e.getMessage(), e);</span>
 		} finally {
-<span class="pc bpc" id="L349" title="5 of 6 branches missed.">			if (manager != null) {</span>
+<span class="pc bpc" id="L345" title="5 of 6 branches missed.">			if (manager != null) {</span>
 				try {
-<span class="nc" id="L351">					manager.close();</span>
-<span class="nc" id="L352">				} catch (PersistenceException e) {</span>
-<span class="nc" id="L353">					LOGGER.error(QueueConstantListener.COULD_NOT_CLOSE);</span>
-<span class="nc" id="L354">				}</span>
+<span class="nc" id="L347">					manager.close();</span>
+<span class="nc" id="L348">				} catch (PersistenceException e) {</span>
+<span class="nc" id="L349">					LOGGER.error(QueueConstantListener.COULD_NOT_CLOSE);</span>
+<span class="nc" id="L350">				}</span>
 			}
-<span class="nc" id="L356">		}</span>
-<span class="fc" id="L357">	}</span>
+<span class="nc" id="L352">		}</span>
+<span class="fc" id="L353">	}</span>
 
 	
 	/**
@@ -363,8 +359,8 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 	 * @param params the params
 	 */
 	public void setParams(Map&lt;String, String&gt; params) {
-<span class="fc" id="L366">		this.params = params;</span>
-<span class="fc" id="L367">	}</span>
+<span class="fc" id="L362">		this.params = params;</span>
+<span class="fc" id="L363">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
