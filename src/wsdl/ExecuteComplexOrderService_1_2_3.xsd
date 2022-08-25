@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6.--><xsd:schema targetNamespace="http://tigo.com/josm/gateway/services/order/OrderResponseDetail/V1" xmlns:ns0="http://tigo.com/josm/gateway/services/order/OrderResponseDetail/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="OrderResponseDetail">
+    <xsd:sequence>
+      <xsd:element name="productId" type="xsd:string" form="qualified"/>
+      <xsd:element name="responseCode" type="xsd:int" form="qualified"/>
+      <xsd:element name="responseDescription" type="xsd:string" form="qualified"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6.--><xsd:schema targetNamespace="http://tigo.com/josm/gateway/services/order/AdditionalParameterDTO/V1" xmlns:ns0="http://tigo.com/josm/gateway/services/order/AdditionalParameterDTO/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="AdditionalParameters">
+    <xsd:sequence>
+      <xsd:element name="parameter" type="ns0:Parameter" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Parameter">
+    <xsd:sequence>
+      <xsd:element name="key" type="xsd:string"/>
+      <xsd:element name="value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

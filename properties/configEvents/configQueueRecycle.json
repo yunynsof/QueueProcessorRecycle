@@ -1,0 +1,10 @@
+{
+	"configQueue": [{
+		"queueipaddress": "192.168.0.231",
+		"queueuser": "USRCPE",
+		"queuepassword": "SRCP2015",
+		"queuelibname": "V4STCD",
+		"queuename": "MGTEL006I",
+		"queuesplit": "|"
+	}]
+}

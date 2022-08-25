@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OcepManager.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QueueProcessorRecycle</a> &gt; <a href="index.source.html" class="el_package">hn.com.tigo.queue.listener.entity</a> &gt; <span class="el_source">OcepManager.java</span></div><h1>OcepManager.java</h1><pre class="source lang-java linenums">package hn.com.tigo.queue.listener.entity;
+
+import java.util.HashMap;
+
+import javax.sql.DataSource;
+
+import hn.com.tigo.josm.persistence.core.SessionBase;
+import hn.com.tigo.josm.persistence.exception.PersistenceException;
+
+/**
+ * OcepManager.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal&lt;mailto: yrodriguez@hightech-corp.com /&gt;}
+ * @version  1.0.0
+ * @since 08-25-2022 12:07:56 PM 2022
+ */
+public class OcepManager extends SessionBase {
+
+	/**
+	 * Instantiates a new ocep manager.
+	 *
+	 * @param dataSource the data source
+	 * @throws PersistenceException the persistence exception
+	 */
+	public OcepManager(final DataSource dataSource) throws PersistenceException {
+<span class="nc" id="L26">        super(dataSource);</span>
+<span class="nc" id="L27">	}</span>
+	
+    /**
+     * List all param.
+     *
+     * @return the hash map
+     * @throws PersistenceException the persistence exception
+     */
+    public HashMap&lt;String, String&gt; listAllParam() throws PersistenceException {
+<span class="nc" id="L36">        ParametersEntity entity = null;</span>
+        try {
+<span class="nc" id="L38">            entity = new ParametersEntity(this);</span>
+<span class="nc" id="L39">            HashMap&lt;String, String&gt; response = entity.listAllParam();</span>
+<span class="nc" id="L40">            return response;</span>
+<span class="nc" id="L41">        } catch (PersistenceException e) {</span>
+<span class="nc" id="L42">            throw new PersistenceException(e.getMessage());</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

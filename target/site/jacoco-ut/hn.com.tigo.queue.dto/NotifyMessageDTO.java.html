@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NotifyMessageDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QueueProcessorRecycle</a> &gt; <a href="index.source.html" class="el_package">hn.com.tigo.queue.dto</a> &gt; <span class="el_source">NotifyMessageDTO.java</span></div><h1>NotifyMessageDTO.java</h1><pre class="source lang-java linenums">package hn.com.tigo.queue.dto;
+
+import java.util.List;
+
+
+/**
+ * NotifyMessageDTO.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal&lt;mailto: yrodriguez@hightech-corp.com /&gt;}
+ * @version  1.0.0
+ * @since 08-25-2022 12:06:25 PM 2022
+ */
+<span class="fc" id="L13">public class NotifyMessageDTO {</span>
+
+	  /**
+     * Attribute that determine eventType.
+     */
+    private String eventType;
+
+    /**
+     * Attribute that determine source.
+     */
+    private String channelId;
+
+    /**
+     * Attribute that determine orderType.
+     */
+    private String orderType;
+
+    /**
+     * Attribute that determine productId.
+     */
+    private int productId;
+
+    /**
+     * Attribute that determine subscriberId.
+     */
+    private String subscriberId;
+
+    /**
+     * Attribute that determine date.
+     */
+    private String date;
+
+    /**
+     * Attribute that determine transactionId.
+     */
+    private String transactionId;
+
+    /**
+     * Attribute that determine additionalsParams.
+     */
+    private List&lt;AttributeValuePair&gt; additionalsParams;
+
+    /**
+     * Method responsible to gets the event type.
+     *
+     * @return the event type
+     */
+    public String getEventType() {
+<span class="nc" id="L61">        return eventType;</span>
+    }
+
+    /**
+     * Method responsible to sets the event type.
+     *
+     * @param eventType the new event type
+     */
+    public void setEventType(String eventType) {
+<span class="fc" id="L70">        this.eventType = eventType;</span>
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * Method responsible to gets the channel Id.
+     *
+     * @return the channelId
+     */
+    public String getChannelId() {
+<span class="nc" id="L79">        return channelId;</span>
+    }
+
+    /**
+     * Method responsible to sets the channel Id.
+     *
+     * @param channelId the new source
+     */
+    public void setChannelId(String channelId) {
+<span class="fc" id="L88">        this.channelId = channelId;</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Method responsible to gets the order type.
+     *
+     * @return the order type
+     */
+    public String getOrderType() {
+<span class="nc" id="L97">        return orderType;</span>
+    }
+
+    /**
+     * Method responsible to sets the order type.
+     *
+     * @param orderType the new order type
+     */
+    public void setOrderType(String orderType) {
+<span class="fc" id="L106">        this.orderType = orderType;</span>
+<span class="fc" id="L107">    }</span>
+
+    /**
+     * Method responsible to gets the product id.
+     *
+     * @return the product id
+     */
+    public int getProductId() {
+<span class="nc" id="L115">        return productId;</span>
+    }
+
+    /**
+     * Method responsible to sets the product id.
+     *
+     * @param productId the new product id
+     */
+    public void setProductId(int productId) {
+<span class="fc" id="L124">        this.productId = productId;</span>
+<span class="fc" id="L125">    }</span>
+
+    /**
+     * Method responsible to gets the subscriber id.
+     *
+     * @return the subscriber id
+     */
+    public String getSubscriberId() {
+<span class="nc" id="L133">        return subscriberId;</span>
+    }
+
+    /**
+     * Method responsible to sets the subscriber id.
+     *
+     * @param subscriberId the new subscriber id
+     */
+    public void setSubscriberId(String subscriberId) {
+<span class="fc" id="L142">        this.subscriberId = subscriberId;</span>
+<span class="fc" id="L143">    }</span>
+
+    /**
+     * Gets the date.
+     *
+     * @return the date
+     */
+    public String getDate() {
+<span class="nc" id="L151">        return date;</span>
+    }
+
+    /**
+     * Sets the date.
+     *
+     * @param date the new date
+     */
+    public void setDate(String date) {
+<span class="fc" id="L160">        this.date = date;</span>
+<span class="fc" id="L161">    }</span>
+
+    /**
+     * Method responsible to gets the transaction id.
+     *
+     * @return the transaction id
+     */
+    public String getTransactionId() {
+<span class="nc" id="L169">        return transactionId;</span>
+    }
+
+    /**
+     * Method responsible to sets the transaction id.
+     *
+     * @param transactionId the new transaction id
+     */
+    public void setTransactionId(String transactionId) {
+<span class="fc" id="L178">        this.transactionId = transactionId;</span>
+<span class="fc" id="L179">    }</span>
+
+    /**
+     * Gets the additionals params.
+     *
+     * @return the additionals params
+     */
+    public List&lt;AttributeValuePair&gt; getAdditionalsParams() {
+<span class="nc" id="L187">        return additionalsParams;</span>
+    }
+
+    /**
+     * Sets the additionals params.
+     *
+     * @param additionalsParams the new additionals params
+     */
+    public void setAdditionalsParams(List&lt;AttributeValuePair&gt; additionalsParams) {
+<span class="fc" id="L196">        this.additionalsParams = additionalsParams;</span>
+<span class="fc" id="L197">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+	<Properties>
+		<Property name="log-path">logs/QueueProcessorRecycleLogs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="FILE" fileName="${log-path}/QueueProcessorRecycle.log" filePattern="${log-path}/QueueProcessorRecycle-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{dd-MM-yyyy HH:mm:ss.SSS} [%t %logger{36}] %c{2} : %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="250 MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%-5level] %d{dd-MM-yyyy HH:mm:ss.SSS} [%t %logger{36}] %c{2} : %msg%n"/>
+		</Console>
+	</Appenders>
+	
+	<Loggers>
+		<Logger name="com.memorynotfound" level="debug" />
+		<Root level="info">
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="FILE" />
+		</Root>
+	</Loggers>
+</Configuration>

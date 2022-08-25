@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6.--><xsd:schema targetNamespace="http://tigo.com/josm/gateway/services/order/OrderResponse/V1" xmlns:ns1="http://tigo.com/josm/gateway/services/order/OrderResponseDetail/V1" xmlns:ns0="http://tigo.com/josm/gateway/services/order/OrderResponse/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="ExecuteComplexOrderService_1_2_3.xsd" namespace="http://tigo.com/josm/gateway/services/order/OrderResponseDetail/V1"/>
+  <xsd:complexType name="OrderResponse">
+    <xsd:sequence>
+      <xsd:element name="transactionID" type="xsd:string"/>
+      <xsd:element name="code" type="xsd:int"/>
+      <xsd:element name="message" type="xsd:string"/>
+      <xsd:element name="orderResponseDetail" type="ns1:OrderResponseDetail" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6.--><xsd:schema targetNamespace="http://tigo.com/josm/gateway/services/order/ComplexOrderRequest/V1" xmlns:ns2="http://tigo.com/josm/gateway/services/order/OrderResponse/V1" xmlns:ns1="http://tigo.com/josm/gateway/services/order/AdditionalParameterDTO/V1" xmlns:ns0="http://tigo.com/josm/gateway/services/order/ComplexOrderRequest/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="ExecuteComplexOrderService_1.xsd" namespace="http://tigo.com/josm/gateway/services/order/AdditionalParameterDTO/V1"/>
+  <xsd:import schemaLocation="ExecuteComplexOrderService_1_2.xsd" namespace="http://tigo.com/josm/gateway/services/order/OrderResponse/V1"/>
+  <xsd:complexType name="ComplexOrderRequest">
+    <xsd:sequence>
+      <xsd:element name="channelId" type="xsd:int"/>
+      <xsd:element name="externalTransacionId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="allOrNothing" type="xsd:boolean"/>
+      <xsd:element name="orderRequestDetail" type="ns0:OrderRequestDetail" maxOccurs="unbounded" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OrderRequestDetail">
+    <xsd:sequence>
+      <xsd:element name="subscriberId" type="xsd:string"/>
+      <xsd:element name="productId" type="xsd:long"/>
+      <xsd:element name="quantity" type="xsd:int"/>
+      <xsd:element name="orderType" type="ns0:EnumOrderType"/>
+      <xsd:element name="additionalParameters" type="ns1:AdditionalParameters" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="complexProductResponseOrder" type="ns2:OrderResponse" nillable="true"/>
+  <xsd:element name="complexOrderRequestInstance" type="ns0:ComplexOrderRequest" nillable="true"/>
+  <xsd:simpleType name="EnumOrderType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="ACTIVATE"/>
+      <xsd:enumeration value="DEACTIVATE"/>
+      <xsd:enumeration value="LOAN"/>
+      <xsd:enumeration value="PURCHASE"/>
+      <xsd:enumeration value="SELL"/>
+      <xsd:enumeration value="TRANSFER"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

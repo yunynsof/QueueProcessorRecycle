@@ -1,0 +1,72 @@
+{
+	"retries": 1,
+	"events": [{
+		"name": "FACTURACION",
+		"defaultProduct": "774",
+		"comment": "Traslado de Deuda Por Equipo",
+		"channelId": 31,
+		"defaultOrder": "PURCHASE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "SEGUROS",
+		"defaultProduct": "9002206",
+		"comment": "PROVISIONING SEGURO DE EQUIPO",
+		"channelId": 31,
+		"defaultOrder": "ACTIVATE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "CONSULTA",
+		"defaultProduct": "9003306",
+		"comment": "Balance Query AS400",
+		"channelId": 31,
+		"defaultOrder": "PURCHASE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "PAGOS",
+		"defaultProduct": "9003307",
+		"comment": "Aplicacion de Pago AS400",
+		"channelId": 31,
+		"defaultOrder": "PURCHASE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "PAGOS_DEACTIVATE",
+		"defaultProduct": "9003307",
+		"comment": "Reversion de Pagos Caja",
+		"channelId": 31,
+		"defaultOrder": "TRANSFER",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "RECICLAJE",
+		"defaultProduct": "338",
+		"comment": "Reciclaje OCEP",
+		"channelId": 31,
+		"defaultOrder": "ACTIVATE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteComplexOrder/ExecuteComplexOrderService",
+		"subevents": []
+	},{
+		"name": "ACTIVATION_PREPAID",
+		"defaultProduct": "767",
+		"comment": "Activation Prepaid",
+		"channelId": 0,
+		"defaultOrder": "PURCHASE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteOrder/ExecuteOrderService",
+		"sleep":10000,
+		"retries":1,
+		"subevents": []
+	},{
+		"name": "ACTIVACION_PRE",
+		"defaultProduct": "768",
+		"comment": "Activacion Prepago Canales Externos",
+		"channelId": 120,
+		"defaultOrder": "ACTIVATE",
+		"endpoint": "http://192.168.159.192:7010/ExecuteOrder/ExecuteOrderService",
+		"sleep":1000,
+		"retries":1,
+		"subevents": []
+	}]
+}

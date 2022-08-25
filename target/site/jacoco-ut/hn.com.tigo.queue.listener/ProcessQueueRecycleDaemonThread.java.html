@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProcessQueueRecycleDaemonThread.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QueueProcessorRecycle</a> &gt; <a href="index.source.html" class="el_package">hn.com.tigo.queue.listener</a> &gt; <span class="el_source">ProcessQueueRecycleDaemonThread.java</span></div><h1>ProcessQueueRecycleDaemonThread.java</h1><pre class="source lang-java linenums">package hn.com.tigo.queue.listener;
+
+import java.io.IOException;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+
+import org.apache.log4j.Logger;
+
+import hn.com.tigo.queue.dto.ConfigQueueDTO;
+import hn.com.tigo.queue.dto.DetailQueueDTO;
+import hn.com.tigo.queue.utils.ReadFilesConfig;
+
+/**
+ * ProcessQueueRecycleDaemonThread.
+ * 
+ * Class that allows you to start the process of Read Queue AS400.
+ *
+ * @author Leonardo Vijil
+ * @version 1.0.0
+ * @since 11/02/2020 11:10:03 AM 2020
+ */
+@Singleton
+@Startup
+<span class="nc" id="L27">public class ProcessQueueRecycleDaemonThread {</span>
+
+	/** The Constant LOGGER. */
+<span class="nc" id="L30">	private static final Logger LOGGER = Logger.getLogger(ProcessQueueRecycleDaemonThread.class);</span>
+
+	/** The thread. */
+	private Thread thread;
+	
+	/** The runnable. */
+<span class="nc" id="L36">	ProcessQueueRecycleMasterThread runnable = null;</span>
+	
+	/**
+	 * Initialize.
+	 */
+	@PostConstruct
+	public void initialize() {
+<span class="nc" id="L43">		final ReadFilesConfig readConfig = new ReadFilesConfig();</span>
+<span class="nc" id="L44">		ConfigQueueDTO configQueue = null;</span>
+		try {
+<span class="nc" id="L46">			configQueue = readConfig.readConfigQueue();</span>
+<span class="nc" id="L47">		} catch (IOException e) {</span>
+<span class="nc" id="L48">			e.printStackTrace();</span>
+<span class="nc" id="L49">		}</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">		for (DetailQueueDTO queue : configQueue.getConfigQueue()) {</span>
+<span class="nc" id="L51">			runnable = new ProcessQueueRecycleMasterThread(queue);</span>
+<span class="nc" id="L52">			thread = new Thread(runnable);</span>
+<span class="nc" id="L53">			thread.setName(&quot;ProcessQueueRecycleMasterThread_executor: &quot; + queue.getQueueName());</span>
+<span class="nc" id="L54">			thread.start();</span>
+<span class="nc" id="L55">			LOGGER.info(&quot;ProcessQueueRecycleMasterThread &quot; + thread.hashCode() + &quot; has been started: &quot; + queue.getQueueName());</span>
+<span class="nc" id="L56">		}</span>
+
+<span class="nc" id="L58">	}</span>
+
+	/**
+	 * Terminate.
+	 */
+	@PreDestroy
+	public void terminate() {
+<span class="nc" id="L65">		runnable.shutdown();</span>
+<span class="nc" id="L66">		this.thread.interrupt();</span>
+<span class="nc" id="L67">		LOGGER.info(&quot;ProcessQueueRecycleMasterThread &quot; + thread.hashCode() + &quot; has been stopped&quot;);</span>
+<span class="nc" id="L68">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

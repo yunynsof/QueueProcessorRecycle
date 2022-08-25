@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ReadFilesConfig.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">QueueProcessorRecycle</a> &gt; <a href="index.source.html" class="el_package">hn.com.tigo.queue.utils</a> &gt; <span class="el_source">ReadFilesConfig.java</span></div><h1>ReadFilesConfig.java</h1><pre class="source lang-java linenums">package hn.com.tigo.queue.utils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.google.gson.Gson;
+
+import hn.com.tigo.queue.dto.ConfigEventDTO;
+import hn.com.tigo.queue.dto.ConfigQueueDTO;
+import hn.com.tigo.queue.dto.DetailEventDTO;
+
+/**
+ * ReadFilesConfig.
+ *
+ * @author Yuny Rene Rodriguez Perez {@literal&lt;mailto: yrodriguez@hightech-corp.com /&gt;}
+ * @version  1.0.0
+ * @since 08-25-2022 12:08:19 PM 2022
+ */
+public class ReadFilesConfig {
+	/** Attribute that determine a Constant of PATH_CONFIG_EVENT. */
+	private static final String PATH_CONFIG_EVENT = &quot;./properties/configEvents/configEventOCEPRecycle.json&quot;;
+	
+	/** Attribute that determine a Constant of PATH_CONFIG_QUEUE. */
+	private static final String PATH_CONFIG_QUEUE = &quot;./properties/configEvents/configQueueRecycle.json&quot;;
+	
+	/** The json. */
+<span class="fc" id="L29">	private final Gson json = new Gson();</span>
+	
+	/**
+	 * Instantiates a new read files config.
+	 */
+<span class="fc" id="L34">	public ReadFilesConfig() {</span>
+<span class="fc" id="L35">	}</span>
+	
+	/**
+	 * Read config event.
+	 *
+	 * @return the config event DTO
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public ConfigEventDTO readConfigEvent() throws IOException {
+<span class="fc" id="L44">		FileReader fileReader = null;</span>
+<span class="fc" id="L45">		BufferedReader bufferedReader = null;</span>
+		try {
+<span class="fc" id="L47">			File file = new File(PATH_CONFIG_EVENT);</span>
+<span class="fc" id="L48">			fileReader = new FileReader(file);</span>
+<span class="fc" id="L49">			bufferedReader = new BufferedReader(fileReader);</span>
+<span class="fc" id="L50">			ConfigEventDTO obj = json.fromJson(bufferedReader, ConfigEventDTO.class);</span>
+<span class="fc" id="L51">			return obj;</span>
+		} finally {
+<span class="pc bpc" id="L53" title="3 of 4 branches missed.">			if (fileReader != null) {</span>
+<span class="pc" id="L54">				fileReader.close();</span>
+			}
+<span class="pc bpc" id="L56" title="3 of 4 branches missed.">			if (bufferedReader != null) {</span>
+<span class="pc" id="L57">				bufferedReader.close();</span>
+			}
+<span class="nc" id="L59">		}</span>
+	}
+	
+	/**
+	 * Gets the detail event.
+	 *
+	 * @param obj the obj
+	 * @param eventType the event type
+	 * @return the detail event
+	 */
+	public DetailEventDTO getDetailEvent(final ConfigEventDTO obj, final String eventType) {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (DetailEventDTO objDetail : obj.getEvents()) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			if(eventType.equalsIgnoreCase(objDetail.getName())) {</span>
+<span class="fc" id="L72">				return objDetail;</span>
+			}
+<span class="fc" id="L74">		}</span>
+<span class="fc" id="L75">		return null;</span>
+	}
+	
+	/**
+	 * Read config queue.
+	 *
+	 * @return the config queue DTO
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public ConfigQueueDTO readConfigQueue() throws IOException {
+<span class="nc" id="L85">		FileReader fileReader = null;</span>
+<span class="nc" id="L86">		BufferedReader bufferedReader = null;</span>
+		try {
+<span class="nc" id="L88">			File file = new File(PATH_CONFIG_QUEUE);</span>
+<span class="nc" id="L89">			fileReader = new FileReader(file);</span>
+<span class="nc" id="L90">			bufferedReader = new BufferedReader(fileReader);</span>
+<span class="nc" id="L91">			ConfigQueueDTO obj = json.fromJson(bufferedReader, ConfigQueueDTO.class);</span>
+<span class="nc" id="L92">			return obj;</span>
+		} finally {
+<span class="nc bnc" id="L94" title="All 4 branches missed.">			if (fileReader != null) {</span>
+<span class="nc" id="L95">				fileReader.close();</span>
+			}
+<span class="nc bnc" id="L97" title="All 4 branches missed.">			if (bufferedReader != null) {</span>
+<span class="nc" id="L98">				bufferedReader.close();</span>
+			}
+<span class="nc" id="L100">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
