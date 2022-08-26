@@ -6,7 +6,7 @@
 package hn.com.tigo.queue.context;
 
 /**
- * AppCommand.
+ * AppCommand Enum class for QueueProcessor Listener.
  *
  * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
  * @version  1.0.0

@@ -1,7 +1,8 @@
 package hn.com.tigo.queue.dto;
 
 /**
- * AttributeValuePair.
+ * AttributeValuePair This class contains the necessary attributes for the attribute Value Pair object, 
+ * a class that makes up the NotifyMessageDTO model class.
  *
  * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
  * @version  1.0.0

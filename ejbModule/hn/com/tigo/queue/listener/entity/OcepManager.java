@@ -8,7 +8,7 @@ import hn.com.tigo.josm.persistence.core.SessionBase;
 import hn.com.tigo.josm.persistence.exception.PersistenceException;
 
 /**
- * OcepManager.
+ * This class contains methods for using entities and making database calls.
  *
  * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
  * @version  1.0.0

@@ -42,9 +42,7 @@ import hn.com.tigo.queue.utils.ReadFilesConfig;
 import hn.com.tigo.queue.utils.States;
 
 /**
- * ProcessQueueRecycleMasterThread.
- * 
- * Class that allows you to start the process of Read Queue AS400.
+ * This class contains the main logic for reading events to be processed and send them to JMS queues.
  *
  * @author Leonardo Vijil
  * @version 1.0.0
@@ -152,7 +150,7 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 						connqueue = null;
 				}
 			}
-			state = States.SHUTTINGDOWN; //linea habilitarla solo para junit test
+			//state = States.SHUTTINGDOWN; //linea habilitarla solo para junit test
 		}
 		executorService.shutdown();
 	}

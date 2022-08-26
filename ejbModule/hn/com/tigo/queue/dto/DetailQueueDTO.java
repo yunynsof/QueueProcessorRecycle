@@ -4,7 +4,7 @@
 package hn.com.tigo.queue.dto;
 
 /**
- * The Class DetailQueueDTO.
+ * This class contains the attributes needed to map the AS400 queue configuration object.
  *
  * @author Leonardo Vijil
  * @version 1.0.0

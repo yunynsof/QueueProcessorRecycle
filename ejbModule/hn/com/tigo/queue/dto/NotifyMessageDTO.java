@@ -2,9 +2,9 @@ package hn.com.tigo.queue.dto;
 
 import java.util.List;
 
-
 /**
- * NotifyMessageDTO.
+ * This class is used for managing and mapping the structure of the messages read 
+ * from the as400 queue and that will be sent to JMS queues.
  *
  * @author Yuny Rene Rodriguez Perez {@literal<mailto: yrodriguez@hightech-corp.com />}
  * @version  1.0.0

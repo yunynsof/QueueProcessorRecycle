@@ -1,7 +1,7 @@
 package hn.com.tigo.queue.utils;
 
 /**
- * The Class QueueConstantListener.
+ * This class provides a set of constants that are used in the process.
  * 
  * @author Leonardo Vijil
  * @version 1.0.0

@@ -3,7 +3,7 @@ package hn.com.tigo.queue.dto;
 import java.util.Date;
 
 /**
- * ParametersModel.
+ * This class is responsible for mapping the parameters obtained from the database.
  *
  * @author Leonardo Vijil
  * @version 1.0.0
