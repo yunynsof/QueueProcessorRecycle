@@ -180,7 +180,7 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 <span class="fc" id="L180">						+ detailEvent.getDefaultProduct());</span>
 <span class="fc" id="L181">				String request = obtainRequest(trama, detailEvent);</span>
 
-<span class="pc bpc" id="L183" title="1 of 2 branches missed.">				if (request != null) {</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">				if (request != null) {</span>
 <span class="fc" id="L184">					methodPost(request);</span>
 				}
 
@@ -207,7 +207,7 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 <span class="fc" id="L207">		Calendar cycleCalendar = Calendar.getInstance();</span>
 <span class="fc" id="L208">		final SimpleDateFormat df = new SimpleDateFormat(&quot;yyyyMMdd&quot;);</span>
 
-<span class="pc bpc" id="L210" title="1 of 2 branches missed.">		if (evenType.equals(&quot;RECICLAJE&quot;)) {</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">		if (evenType.equals(&quot;RECICLAJE&quot;)) {</span>
 		
 <span class="fc" id="L212">			String[] subscriber = trama[2].split(params.get(&quot;SUBSCRIBER_SPLIT&quot;));</span>
 <span class="fc bfc" id="L213" title="All 2 branches covered.">			NotifyMessageDTO object = generatedRequest(trama, detailEvent, notifyMessageDTO, evenType, uuid,</span>
@@ -215,7 +215,7 @@ public class ProcessQueueRecycleMasterThread extends Thread {
 <span class="fc" id="L215">			Gson gson = new Gson();</span>
 <span class="fc" id="L216">			return gson.toJson(object);			</span>
 		}
-<span class="nc" id="L218">		return request;</span>
+<span class="fc" id="L218">		return request;</span>
 	}
 
 	/**

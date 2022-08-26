@@ -1,6 +1,0 @@
-projectKey=hn.com.tigo.ocep:QueueProcessorRecycle
-serverUrl=http://localhost:9000
-serverVersion=7.0.0.36138
-dashboardUrl=http://localhost:9000/dashboard/index/hn.com.tigo.ocep:QueueProcessorRecycle
-ceTaskId=AYLWUA_KeT7O9oP9wZEM
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYLWUA_KeT7O9oP9wZEM
