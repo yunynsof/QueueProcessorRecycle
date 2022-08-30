@@ -14,7 +14,6 @@ import hn.com.tigo.queue.dto.DetailQueueDTO;
 import hn.com.tigo.queue.utils.ReadFilesConfig;
 
 /**
- * .
  * Class that allows you to start the process of Read Queue AS400.
  *
  * @author Leonardo Vijil
